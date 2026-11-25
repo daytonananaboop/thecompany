@@ -1,0 +1,27 @@
+[workspace]
+resolver = "3"
+members = ["nucleo", "catalogo", "app"]
+default-members = ["nucleo", "catalogo"]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+license = "CC0-1.0"
+publish = false
+
+[workspace.dependencies]
+nucleo = { path = "nucleo" }
+catalogo = { path = "catalogo" }
+rayon = "1"
+flate2 = { version = "1", default-features = false, features = ["zlib-rs"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+
+[profile.dev]
+opt-level = 2
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+strip = true

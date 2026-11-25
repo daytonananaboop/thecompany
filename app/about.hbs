@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Licencias de terceros</title>
+<link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+<div class="marco">
+  <header class="cabecera">
+    <div class="sello">
+      <h1>Licencias de terceros</h1>
+      <p>Bibliotecas de código abierto incluidas en La Compañía</p>
+    </div>
+    <a class="boton" href="index.html">Volver</a>
+  </header>
+  <main class="pliego">
+    {{#each licenses}}
+    <section class="seccion">
+      <h3>{{name}}</h3>
+      <p>{{#each used_by}}{{crate.name}} {{crate.version}}{{#unless @last}}, {{/unless}}{{/each}}</p>
+      <pre class="tipeado">{{text}}</pre>
+    </section>
+    {{/each}}
+  </main>
+</div>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>La Compañía</title>
+<link rel="stylesheet" href="estilo.css">
+<script type="module" src="app.js"></script>
+</head>
+<body>
+<div class="marco">
+  <header class="cabecera">
+    <div class="sello">
+      <h1>La Compañía</h1>
+      <p>Algoritmos de bioinformática, con E. coli a bordo</p>
+    </div>
+    <div class="mandos">
+      <div class="buscador">
+        <label for="buscar">Buscar un algoritmo</label>
+        <input id="buscar" type="search" autocomplete="off" spellcheck="false">
+      </div>
+      <button class="interruptor" id="vanguardia" type="button" aria-pressed="false">
+        <span class="rio">Vanguardia</span>
+        <span class="llano" id="vanguardia-llano">Ver algoritmos recientes</span>
+      </button>
+      <button class="interruptor" id="tema" type="button" aria-pressed="false">
+        <span class="rio" id="tema-rio">El río de noche</span>
+        <span class="llano" id="tema-llano">Modo oscuro</span>
+      </button>
+    </div>
+  </header>
+
+  <section class="carta" aria-label="Carta del río: cada estación es un capítulo">
+    <div class="carta-desliza" id="carta"></div>
+  </section>
+
+  <main class="mesa">
+    <nav class="indice" id="indice" aria-label="Algoritmos del capítulo"></nav>
+    <article class="pliego" id="pliego" aria-live="polite"></article>
+  </main>
+
+  <footer class="pie">
+    <p>Uso educativo. No sirve para decisiones clínicas ni diagnósticas.</p>
+    <p>Datos incluidos: Escherichia coli K-12 MG1655, NCBI RefSeq NC_000913.3.</p>
+    <p id="enlace-licencias" hidden><a href="licencias.html">Licencias de terceros</a></p>
+  </footer>
+</div>
+<div class="punta" id="punta" hidden></div>
+<datalist id="genes-ecoli"></datalist>
+</body>
+</html>
