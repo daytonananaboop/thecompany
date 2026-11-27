@@ -1289,7 +1289,7 @@ fn narrar_golpes(libreta: &mut Libreta, por_palabra: &[Vec<u32>], conteo: &Conte
         .lista("Las palabras que más golpes dan", elementos, &[0]);
     libreta.agregar(
         pizarra,
-        "golpes += en_consulta * base.veces_por_palabra[palabra];",
+        "golpes += en_consulta * veces;",
         format!(
             "Para cada palabra posible multiplica cuántas veces aparece en tu consulta por cuántas veces aparece en la base y lo suma. Resultado: {} golpes.",
             miles(conteo.golpes as usize)
@@ -2582,7 +2582,9 @@ fn rastrear_blastx(entrada: &Entrada) -> Result<Rastro, String> {
         );
         let hebra = if marco.marco > 0 { &consulta } else { &inversa };
         let codones: Vec<String> = hebra[marco.desplazamiento..]
-            .chunks_exact(3)
+            .as_chunks::<3>()
+            .0
+            .iter()
             .take(FILAS_EN_PIZARRA)
             .zip(&marco.proteina)
             .map(|(codon, &aminoacido)| {

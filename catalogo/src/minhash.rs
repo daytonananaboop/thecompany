@@ -1804,10 +1804,10 @@ fn par_de_contencion(pedido: &Pedido, comparacion: &Comparacion) -> (usize, usiz
     par_contenido(pedido, comparacion).unwrap_or_else(|| {
         let mut mejor = (0, 1);
         let mut valor = -1.0;
-        for chico in 0..comparacion.bosquejos.len() {
-            for grande in 0..comparacion.bosquejos.len() {
-                if chico != grande && comparacion.contencion[chico][grande] > valor {
-                    valor = comparacion.contencion[chico][grande];
+        for (chico, fila) in comparacion.contencion.iter().enumerate() {
+            for (grande, &contencion) in fila.iter().enumerate() {
+                if chico != grande && contencion > valor {
+                    valor = contencion;
                     mejor = (chico, grande);
                 }
             }

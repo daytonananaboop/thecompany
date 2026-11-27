@@ -2608,8 +2608,11 @@ mod pruebas {
         for _ in 0..100 {
             let largo = azar.entero(150);
             let texto = texto_al_azar(&mut azar, largo);
-            let mut simbolos: Vec<u32> = texto.iter().map(|&l| l as u32 + 1).collect();
-            simbolos.push(0);
+            let simbolos: Vec<u32> = texto
+                .iter()
+                .map(|&l| l as u32 + 1)
+                .chain(std::iter::once(0))
+                .collect();
             let mut narracion = Narracion::nueva(MAXIMO_PASOS);
             let narrado = narrar_sa_is(&mut narracion, &simbolos, &texto, largo <= 40);
             assert_eq!(narrado, indice_fm::arreglo_de_sufijos(&texto).unwrap());

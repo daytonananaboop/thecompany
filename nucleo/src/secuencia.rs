@@ -67,7 +67,12 @@ pub fn aminoacido(codon: &[u8]) -> u8 {
 }
 
 pub fn traducir(secuencia: &[u8]) -> Vec<u8> {
-    secuencia.chunks_exact(3).map(aminoacido).collect()
+    secuencia
+        .as_chunks::<3>()
+        .0
+        .iter()
+        .map(|codon| aminoacido(codon))
+        .collect()
 }
 
 pub fn limpiar(texto: &str) -> Vec<u8> {

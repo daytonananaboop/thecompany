@@ -195,8 +195,8 @@ pub fn aplicar_mutaciones(referencia: &[u8], mutaciones: &[Mutacion]) -> GenomaM
             posicion += 1;
         }
         let comunes = mutacion.referencia.len().min(mutacion.alternativa.len());
-        for indice in 0..comunes {
-            bases.push(mutacion.alternativa[indice]);
+        for (indice, &alternativa) in mutacion.alternativa[..comunes].iter().enumerate() {
+            bases.push(alternativa);
             origen.push(Some(posicion + indice));
         }
         for &insertada in &mutacion.alternativa[comunes..] {

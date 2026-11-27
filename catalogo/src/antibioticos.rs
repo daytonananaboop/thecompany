@@ -2565,7 +2565,7 @@ fn narrar_traduccion(arn: &[u8]) -> Result<(Vec<Paso>, antibioticos::Traduccion)
             .paso("let mut peptido = Vec::with_capacity(arn.len() / 3);", nota),
     );
     let mut parada = None;
-    for (numero, codon) in arn.chunks_exact(3).enumerate() {
+    for (numero, codon) in arn.as_chunks::<3>().0.iter().enumerate() {
         let letra = aminoacido(codon);
         if letra == b'X' {
             return Err(format!(
@@ -2589,7 +2589,7 @@ fn narrar_traduccion(arn: &[u8]) -> Result<(Vec<Paso>, antibioticos::Traduccion)
         let marcas = [(inicio, inicio + 3, Resalte::Actual)];
         if detallado {
             narracion.agregar(pizarra_de_traduccion(&mostrado, &estado, &marcas).paso(
-                "for (numero, codon) in arn.chunks_exact(3).enumerate() {",
+                "for (numero, codon) in arn.as_chunks::<3>().0.iter().enumerate() {",
                 format!(
                     "Toma el codón número {numero}: las bases {inicio} a {}, que dicen {texto_codon}.",
                     inicio + 2

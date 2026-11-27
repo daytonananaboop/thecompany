@@ -83,7 +83,7 @@ pub struct Lideres {
 
 pub fn traducir_arn(arn: &[u8]) -> Result<Traduccion, String> {
     let mut peptido = Vec::with_capacity(arn.len() / 3);
-    for (numero, codon) in arn.chunks_exact(3).enumerate() {
+    for (numero, codon) in arn.as_chunks::<3>().0.iter().enumerate() {
         let letra = aminoacido(codon);
         if letra == b'X' {
             return Err(format!(

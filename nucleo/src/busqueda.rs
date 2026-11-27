@@ -1121,9 +1121,12 @@ pub fn buscar_proteinas(
     }
     let tabla = tabla_de_vecinas(consulta, parametros.umbral_vecinas);
     let mut golpes: u64 = 0;
-    for palabra in 0..PALABRAS_DE_PROTEINA {
+    for (palabra, &veces) in base.veces_por_palabra[..PALABRAS_DE_PROTEINA]
+        .iter()
+        .enumerate()
+    {
         let en_consulta = tabla.posiciones_de(palabra as u32).len() as u64;
-        golpes += en_consulta * base.veces_por_palabra[palabra];
+        golpes += en_consulta * veces;
     }
     if golpes > LIMITE_DE_GOLPES {
         return Err(demasiados_golpes(golpes, LIMITE_DE_GOLPES));

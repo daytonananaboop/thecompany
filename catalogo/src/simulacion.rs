@@ -571,7 +571,7 @@ fn trazar(entrada: &Entrada) -> Result<(Vec<Paso>, Simulacion), String> {
                     )],
                 )
                 .paso(
-                    "bases.push(mutacion.alternativa[indice]);",
+                    "bases.push(alternativa);",
                     format!(
                         "Aquí la muestra cambia: donde la referencia tenía {} la muestra tiene {}. Esa base marcada es la que luego tendrán que encontrar las herramientas de variantes.",
                         String::from_utf8_lossy(&mutacion.referencia),

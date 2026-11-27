@@ -148,11 +148,11 @@ fn el_grafo_snn_une_solo_a_los_que_comparten_vecinos() {
     ]);
     let vecinos = vecinos_mas_cercanos(&datos, 2);
     let grafo = grafo_snn(&vecinos);
-    for nodo in 0..3 {
-        assert!(grafo.vecinos[nodo].iter().all(|&(otro, _)| otro < 3));
+    for lista in &grafo.vecinos[..3] {
+        assert!(lista.iter().all(|&(otro, _)| otro < 3));
     }
-    for nodo in 3..6 {
-        assert!(grafo.vecinos[nodo].iter().all(|&(otro, _)| otro >= 3));
+    for lista in &grafo.vecinos[3..6] {
+        assert!(lista.iter().all(|&(otro, _)| otro >= 3));
     }
     assert!(grafo.vecinos[0].iter().all(|&(_, peso)| cerca(peso, 1.0)));
     assert!(cerca(grafo.peso_total, 6.0));
